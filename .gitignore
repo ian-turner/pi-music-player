@@ -1,2 +1,5 @@
-*.uf2
 /**/*.DS_Store
+/**/*.swp
+/**/__pycache__
+/**/*.mp3
+/**/*.wav
