@@ -15,3 +15,8 @@
 - [Sox](https://manpages.ubuntu.com/manpages/jammy/man1/sox.1.html) - Linux command for playing audio from terminal
 
 - [Sending audio to GPIO](https://www.youtube.com/watch?v=3pXB90IDNoY) - explains how to send audio to GPIO
+
+- [Python script as service](https://gist.github.com/emxsys/a507f3cad928e66f6410e7ac28e2990f) - explains how to
+set up a python script to run as a service in Linux
+
+- [Connect to WiFi](https://www.instructables.com/Connect-Raspberry-Pi-to-College-WIFI/) - how to connect to eduroam wifi on pi zero
