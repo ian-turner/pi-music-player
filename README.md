@@ -14,7 +14,7 @@
 
 - [Sox](https://manpages.ubuntu.com/manpages/jammy/man1/sox.1.html) - Linux command for playing audio from terminal
 
-- [Sending audio to GPIO](https://www.youtube.com/watch?v=3pXB90IDNoY) - explains how to send audio to GPIO
+- [Sending audio to GPIO](https://retropie.org.uk/forum/topic/32513/cannot-set-audio-to-heaphones-on-raspberry-pi-zero-2-w/4) - explains how to send audio to GPIO
 
 - [Python script as service](https://gist.github.com/emxsys/a507f3cad928e66f6410e7ac28e2990f) - explains how to
 set up a python script to run as a service in Linux
