@@ -1,21 +1,27 @@
+from time import sleep
 from gpiozero import Button
-from audio_player import AudioPlayer
+from audio_system import AudioSystem
+
+
+MUSIC_FOLDER = '/home/pi/music'
+PLAY_BUTTON_PIN = 21
+LEFT_BUTTON_PIN = 20
+RIGHT_BUTTON_PIN = 16
 
 
 if __name__ == '__main__':
-    button = Button(21)
-    last_val = 0
-    player = AudioPlayer()
-    player.load('song1.wav')
+    # initializing audio system abstraction
+    system = AudioSystem(MUSIC_FOLDER)
+
+    # setting up GPIO
+    play_button = Button(PLAY_BUTTON_PIN)
+    left_button = Button(LEFT_BUTTON_PIN)
+    right_button = Button(RIGHT_BUTTON_PIN)
+
+    # connecting buttons to system
+    play_button.when_pressed = system.play
+    left_button.when_pressed = system.prev
+    right_button.when_pressed = system.next
 
     while True:
-        val = button.value
-        if val == 1 and last_val == 0:
-            print('button pressed')
-            if player.playing:
-                print('pausing player')
-                player.pause()
-            else:
-                print('starting player')
-                player.play()
-        last_val = val
+        sleep(1)
