@@ -25,16 +25,15 @@ class AudioSystem:
             for i in range(len(self.music_files)):
                 print('\t%d %s' % (i, self.music_files[i]))
 
-        self.current_song = 0
-
         # initializing player and screen
-        print('Initializing audio player')
-        self.player = AudioPlayer()
-        self.player.load(self.music_files[0])
-
         print('Initializing display')
         self.disp = Display()
-        self.update_disp()
+
+        print('Initializing audio player')
+        self.player = AudioPlayer()
+        self.current_song = 0
+
+        self.load_current_song()
 
 
     def load_current_song(self):
@@ -43,7 +42,6 @@ class AudioSystem:
             self.player.stop()
         self.player.load(self.music_files[self.current_song])
         self.update_disp()
-        self.player.play()
 
 
     def update_disp(self):

@@ -1,15 +1,20 @@
-.PHONY:
-run:
-	ssh -t pi@raspberrypi.local "/usr/bin/python /home/pi/code/main.py"
+PI_USER=pi
+PI_HOST=raspberrypi.local
+CODE_DIR=/home/$(PI_USER)/code
 
-.PHONY:
-program:
-	rsync ./*.py pi@raspberrypi.local:/home/pi/code
 
 .PHONY:
 load_music:
-	rsync ./music/*.wav pi@raspberrypi.local:/home/pi/music
+	rsync ./music/*.wav $(PI_USER)@$(PI_HOST):/home/$(PI_USER)/music
+
+.PHONY:
+program:
+	rsync ./*.py $(PI_USER)@$(PI_HOST):$(CODE_DIR)
+
+.PHONY:
+run:
+	ssh -t $(PI_USER)@$(PI_HOST) "/usr/bin/python $(CODE_DIR)"
 
 .PHONY:
 shutdown_pi:
-	ssh pi@raspberrypi.local "sudo shutdown now"
+	ssh $(PI_USER)@$(PI_HOST) "sudo shutdown now"
