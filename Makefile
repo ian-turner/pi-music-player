@@ -26,10 +26,15 @@ start:
 	ssh -t $(PI_USER)@$(PI_HOST) "sudo chmod 644 /lib/systemd/system/player.service; sudo chmod +x $(CODE_DIR)/main.py; sudo systemctl daemon-reload; sudo systemctl enable player.service; sudo systemctl restart player.service"
 
 .PHONY:
-run:
+test:
 	# run the code in an interactive ssh shell
 	ssh -t $(PI_USER)@$(PI_HOST) "/usr/bin/python $(CODE_DIR)/main.py"
 
 .PHONY:
 shutdown_pi:
 	ssh $(PI_USER)@$(PI_HOST) "sudo shutdown now"
+
+.PHONY:
+clean:
+	# cleans out the code and service file and disables service
+	ssh -t $(PI_USER)@$(PI_HOST) "sudo systemctl stop player.service; sudo rm /lib/systemd/system/player.service; sudo rm -rf $(CODE_DIR)"

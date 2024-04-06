@@ -35,7 +35,7 @@ modules-load=dwc2,g_ether
 - Once done you should see a device in your network manager that looks
 something like "Ethernet over USB" or "RNDIS Ethernet Gadget"
 
-**Step 4**: setup and program the Pi
+**Step 4**: setup the device
 
 - Install all the libraries and do the necessary config by doing
 
@@ -46,32 +46,38 @@ make setup
 - This will run `raspi-config` at the end, and you will have to manually
 enable I2C (Interface Options > I2C) and audio out from headphones jack (System > Audio)
 
-**Step 5**: upload code and music to device and start service
-
 - To upload `.wav` files from `./music` to the device, run the command
 
 ```
 make load_music
 ```
 
-- To upload the python code to the device and create a service to run it, run
+**Step 5**: upload code and start service
+
+- To upload the python code to the device run
 
 ```
 make program
 ```
 
-- Run this anytime code is changed
-
-- When you are finished testing run
+- Then to start the code as a service run
 
 ```
-make shutdown_pi
+make start
 ```
 
-- If you want to run the code in an interactive session, run
+- Run these two commands anytime code is changed
+
+- If you want to run the code in an interactive session to test it first, run
 
 ```
-make run
+make test
+```
+
+- To clear out code files and stop service, run
+
+```
+make clean
 ```
 
 ## Sources
