@@ -82,15 +82,18 @@ make clean
 
 ## Sources
 
-- [SSH to Pi Zero](https://artivis.github.io/post/2020/pi-zero/) - explains how to set up ssh on the pi zero over usb
+- [SSH to Pi Zero over USB](https://artivis.github.io/post/2020/pi-zero/)
 
-- [GPIO setup](https://gpiozero.readthedocs.io/en/stable/recipes.html) - explains how to set up GPIO in python
+- [GPIO setup and pin map](https://gpiozero.readthedocs.io/en/stable/recipes.html)
 
-- [Sox](https://manpages.ubuntu.com/manpages/jammy/man1/sox.1.html) - Linux command for playing audio from terminal
+- [Sox Linux audio player](https://manpages.ubuntu.com/manpages/jammy/man1/sox.1.html)
 
-- [Sending audio to GPIO](https://retropie.org.uk/forum/topic/32513/cannot-set-audio-to-heaphones-on-raspberry-pi-zero-2-w/4) - explains how to send audio to GPIO
+- [Sending audio to GPIO](https://retropie.org.uk/forum/topic/32513/cannot-set-audio-to-heaphones-on-raspberry-pi-zero-2-w/4)
 
-- [Python script as service](https://gist.github.com/emxsys/a507f3cad928e66f6410e7ac28e2990f) - explains how to
-set up a python script to run as a service in Linux
+- [Python script as service](https://gist.github.com/emxsys/a507f3cad928e66f6410e7ac28e2990f)
 
-- [Connect to WiFi](https://www.instructables.com/Connect-Raspberry-Pi-to-College-WIFI/) - how to connect to eduroam wifi on pi zero
+- [Connect to eduroam WiFi](https://www.instructables.com/Connect-Raspberry-Pi-to-College-WIFI/)
+
+- [Adafruit OLED display](https://github.com/adafruit/Adafruit_Python_SSD1306)
+
+- [Adding a power button](https://howchoo.com/pi/how-to-add-a-power-button-to-your-raspberry-pi/)
