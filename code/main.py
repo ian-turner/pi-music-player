@@ -1,5 +1,6 @@
 from time import sleep
-from gpiozero import Button
+import subprocess
+from gpiozero import Button, LED
 from audio_system import AudioSystem
 
 
@@ -7,6 +8,7 @@ MUSIC_FOLDER = '/home/pi/music'
 PLAY_BUTTON_PIN = 21
 LEFT_BUTTON_PIN = 20
 RIGHT_BUTTON_PIN = 16
+POWER_BUTTON_PIN = 3
 
 
 if __name__ == '__main__':
@@ -17,11 +19,16 @@ if __name__ == '__main__':
     play_button = Button(PLAY_BUTTON_PIN)
     left_button = Button(LEFT_BUTTON_PIN)
     right_button = Button(RIGHT_BUTTON_PIN)
+    power_button = Button(POWER_BUTTON_PIN)
 
     # connecting buttons to system
     play_button.when_pressed = system.play
     left_button.when_pressed = system.prev
     right_button.when_pressed = system.next
 
+    # listening for shutdown
+    power_button.when_pressed = system.shutdown
+
+    # waiting until shutdown
     while True:
         sleep(1)

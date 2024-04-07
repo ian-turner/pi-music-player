@@ -8,6 +8,11 @@ import sys
 import glob
 from display import Display
 from audio_player import AudioPlayer
+from gpiozero import LED
+import subprocess
+
+
+ON_LED_PIN = 12
 
 
 class AudioSystem:
@@ -34,6 +39,8 @@ class AudioSystem:
         self.current_song = 0
 
         self.load_current_song()
+        self.on_led = LED(ON_LED_PIN)
+        self.on_led.on()
 
 
     def load_current_song(self):
@@ -50,12 +57,15 @@ class AudioSystem:
 
     def play(self):
         if self.player.playing:
-            print('Stopping player')
             self.player.stop()
         else:
             print('Starting player')
             self.player.play()
+            self.update_disp()
 
+    def stop(self):
+        print('Stopping player')
+        self.player.stop()
         self.update_disp()
 
 
@@ -77,3 +87,10 @@ class AudioSystem:
             self.current_song = 0
 
         self.load_current_song()
+
+    def shutdown(self):
+        print('Shutting down audio system')
+        self.stop()
+        self.disp.clear()
+        self.on_led.off()
+        subprocess.call(['sudo', 'shutdown', '-h', 'now'], shell=False)

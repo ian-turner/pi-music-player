@@ -5,12 +5,15 @@ from PIL import ImageDraw
 from PIL import ImageFont
 
 
+I2C_BUS = 0
+
+
 class Display:
     def __init__(self):
         # initializing display
         try:
-            print('Trying to initialize OLED display.....', end='')
-            self.disp = Adafruit_SSD1306.SSD1306_128_32(rst=None)
+            print('Trying to initialize OLED display')
+            self.disp = Adafruit_SSD1306.SSD1306_128_32(rst=None, i2c_bus=I2C_BUS)
             self.disp.begin()
             self.disp.clear()
             self.disp.display()

@@ -29,6 +29,11 @@ start:
 test:
 	# run the code in an interactive ssh shell
 	ssh -t $(PI_USER)@$(PI_HOST) "/usr/bin/python $(CODE_DIR)/main.py"
+ 
+.PHONY:
+stop:
+	# stopping the service
+	ssh -t $(PI_USER)@$(PI_HOST) "sudo systemctl stop player.service"
 
 .PHONY:
 shutdown_pi:

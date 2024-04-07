@@ -16,6 +16,7 @@
 
 ```
 dtoverlay=dwc2
+dtparam=i2c_vc=on
 audio_pwm_mode=2
 dtoverlay=audremap,pins_18_19
 ```
@@ -97,3 +98,5 @@ make clean
 - [Adafruit OLED display](https://github.com/adafruit/Adafruit_Python_SSD1306)
 
 - [Adding a power button](https://howchoo.com/pi/how-to-add-a-power-button-to-your-raspberry-pi/)
+
+- [Enabling second I2C bus](https://woodgears.ca/tech/i2c.html)
