@@ -1,58 +1,45 @@
 """
-Class that handles loading and playing audio files asynchronously
-using subprocess spawning and multithreading
+Class that handles loading and playing audio
+files asynchronously using subprocess spawning
 """
 
 import os
 from time import time, sleep
+import subprocess
 from subprocess import Popen, PIPE
-from threading import Thread
-
-
-# refresh rate in milliseconds
-DEFAULT_REFRESH_RATE = 50
 
 
 class AudioPlayer:
-    def __init__(self, refresh_rate: int = DEFAULT_REFRESH_RATE):
+    def __init__(self):
         self.song_file = None
         self.sub_proc = None
-        self.time_msec = 0
-        self.counter_thread = None
         self.playing = False
-        self.refresh_rate = refresh_rate
         self.song_title = ''
+        self.song_pos = 0
+        self.start_time = 0
+        self.song_time_sec = 1
 
 
     def load(self, file: str):
         # clear settings and load new audio file
         self.song_file = file
-        self.time_msec = 0
+        self.song_pos = 0
         self.sub_proc = None
         self.playing = False
         self.song_title = os.path.basename(self.song_file).split('.')[0]
-
-
-    def step_time(self):
-        # infinite loop until song is paused
-        while self.playing:
-            self.time_msec += self.refresh_rate
-            sleep(self.refresh_rate / 1000)
+        self.get_song_length()
 
 
     def play(self):
         self.playing = True
         # recovering timestamp from previous play
-        timestamp = '%.2f' % (self.time_msec / 1000)
+        timestamp = '%.3f' % self.song_pos
 
         # starting a subprocess to play the audio with sox
         self.sub_proc = Popen(['play', self.song_file, 'trim', timestamp],
                               stdin=PIPE, stdout=PIPE, stderr=PIPE)
-        print('Starting song at %ss' % timestamp)
-
-        # starting thread to count how long song has been playing
-        self.counter_thread = Thread(target=self.step_time)
-        self.counter_thread.start()
+        self.start_time = time()
+        print('Started \'%s\' at %.2fs' % (self.song_title, self.song_pos))
 
 
     def stop(self):
@@ -61,3 +48,12 @@ class AudioPlayer:
             # stopping the audio playback
             self.sub_proc.kill()
             self.playing = False
+            
+            # checking time to see how long it played for
+            self.song_pos += time() - self.start_time
+            print('Stopped \'%s\' at %.2fs' % (self.song_title, self.song_pos))
+
+    
+    def get_song_length(self):
+        # getting song length using soxi
+        self.song_time_sec = float(subprocess.run(['soxi', '-D', self.song_file], capture_output=True).stdout)

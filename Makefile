@@ -1,7 +1,7 @@
 PI_USER=pi
 PI_HOST=raspberrypi.local
 CODE_DIR=/home/$(PI_USER)/code
-SRC_DIR=./code
+SRC_DIR=./src
 
 
 .PHONY:

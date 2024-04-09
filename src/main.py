@@ -1,6 +1,6 @@
 from time import sleep
 import subprocess
-from gpiozero import Button, LED
+from gpiozero import Button
 from audio_system import AudioSystem
 
 
