@@ -109,9 +109,10 @@ class AudioSystem:
     def shutdown(self):
         print('Shutting down audio system')
         # stopping audio playback
-        self.stop()
+        self.player.stop()
 
         # shutting off display
+        self.updater_thread.stop()
         self.disp.close()
 
         # shutting down OS
