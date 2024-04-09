@@ -36,11 +36,12 @@ class AudioSystem:
 
         # creating thread to deal with updating the display
         self.updater_thread = Thread(target=self.update_display)
+        self.running = True
         self.updater_thread.start()
 
 
     def update_display(self):
-        while True:
+        while self.running:
             # writing the song title
             self.disp.message = self.player.song_title
 
@@ -112,7 +113,8 @@ class AudioSystem:
         self.player.stop()
 
         # shutting off display
-        self.updater_thread.stop()
+        self.running = False
+        self.updater_thread.join()
         self.disp.close()
 
         # shutting down OS
