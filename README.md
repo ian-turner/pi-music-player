@@ -45,7 +45,8 @@ make setup
 ```
 
 - This will run `raspi-config` at the end, and you will have to manually
-enable I2C (Interface Options > I2C) and audio out from headphones jack (System > Audio)
+enable I2C (Interface Options > I2C) and audio out from headphones jack (System > Audio),
+and enable login at boot (System > Boot/Auto Login)
 
 - To upload `.wav` files from `./music` to the device, run the command
 
