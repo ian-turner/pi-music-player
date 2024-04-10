@@ -72,4 +72,5 @@ class Display:
 
     def close(self):
         self.clear()
+        self.disp = None
         self.on_led.off()
