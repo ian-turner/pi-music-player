@@ -1,5 +1,3 @@
-from time import sleep
-import subprocess
 from gpiozero import Button
 from audio_system import AudioSystem
 
@@ -31,4 +29,4 @@ if __name__ == '__main__':
 
     # waiting until shutdown
     while True:
-        sleep(1)
+        system.update_display()

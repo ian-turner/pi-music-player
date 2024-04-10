@@ -70,22 +70,6 @@ class Display:
             self.disp.display()
 
 
-#    def write(self, _text: str):
-#        if self.disp:
-#            # initialize an image
-#            width = self.disp.width
-#            height = self.disp.height
-#            image = Image.new('1', (width, height))
-#
-#            # drawing background and text
-#            draw = ImageDraw.Draw(image)
-#            font = ImageFont.load_default()
-#            draw.rectangle((0,0,width,height), outline=0, fill=0)
-#            draw.text((0,10), _text, font=font, fill=255)
-#
-#            self.disp.image(image)
-#            self.disp.display()
-
     def close(self):
         self.clear()
         self.on_led.off()

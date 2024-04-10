@@ -11,7 +11,6 @@ from display import Display
 from audio_player import AudioPlayer
 from gpiozero import LED
 import subprocess
-from threading import Thread
 
 
 DISPLAY_REFRESH_RATE = 50
@@ -34,30 +33,24 @@ class AudioSystem:
         # setting current song
         self.load_song(0)
 
-        # creating thread to deal with updating the display
-        self.updater_thread = Thread(target=self.update_display)
-        self.running = True
-        self.updater_thread.start()
-
 
     def update_display(self):
-        while self.running:
-            # writing the song title
-            self.disp.message = self.player.song_title
+        # writing the song title
+        self.disp.message = self.player.song_title
 
-            # setting track number
-            self.disp.current_song = self.current_song
+        # setting track number
+        self.disp.current_song = self.current_song
 
-            # setting time indicator
-            if self.player.playing:
-                self.disp.time_sec = int(time() - self.player.start_time + self.player.song_pos)
-            else:
-                self.disp.time_sec = int(self.player.song_pos)
-            self.disp.playing = self.player.playing
-            self.disp.song_time_sec = self.player.song_time_sec
+        # setting time indicator
+        if self.player.playing:
+            self.disp.time_sec = int(time() - self.player.start_time + self.player.song_pos)
+        else:
+            self.disp.time_sec = int(self.player.song_pos)
+        self.disp.playing = self.player.playing
+        self.disp.song_time_sec = self.player.song_time_sec
 
-            self.disp.update()
-            sleep(DISPLAY_REFRESH_RATE / 1000)
+        self.disp.update()
+        sleep(DISPLAY_REFRESH_RATE / 1000)
 
 
     def load_music_dir(self, music_dir: str):
@@ -113,8 +106,6 @@ class AudioSystem:
         self.player.stop()
 
         # shutting off display
-        self.running = False
-        self.updater_thread.join()
         self.disp.close()
 
         # shutting down OS
