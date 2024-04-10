@@ -14,7 +14,6 @@ import subprocess
 
 
 DISPLAY_REFRESH_RATE = 50
-ON_LED_PIN = 12
 
 
 class AudioSystem:
