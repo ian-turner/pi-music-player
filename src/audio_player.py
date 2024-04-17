@@ -43,7 +43,7 @@ class AudioPlayer:
 
 
     def stop(self):
-        # stops the counting thread and updates state
+        # stops the audio playing thread and saves state
         if self.playing:
             # stopping the audio playback
             self.sub_proc.kill()
