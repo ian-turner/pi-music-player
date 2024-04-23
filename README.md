@@ -1,4 +1,28 @@
-# ELCT 201 Final Project
+# Pi Music Player
+
+## Description
+
+This repository contains the code and setup instructions for a Raspberry Pi-based
+music player.
+The player is a Python script that runs as a Linux systemd service which
+connects to a small OLED display and a button pad.
+
+A breadboard implementation is pictured below
+
+![Board](images/board.JPG)
+
+The button to the left of the display powers the board on/off,
+the buttons on the right of the display select the next/previous song
+and play/pause the song.
+
+An example picture of the display is shown below.
+
+![Display](images/display.JPG)
+
+The bar at the top shows how far through the song the player is,
+the text in the middle shows the song title, and the text
+at the bottom shows which track number is playing and the current
+position in the song in seconds.
 
 ## Programming the Pi Zero
 
