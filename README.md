@@ -1,7 +1,5 @@
 # Pi Music Player
 
-## Description
-
 This repository contains the code and setup instructions for a Raspberry Pi-based
 music player.
 The player is a Python script that runs as a Linux systemd service which
